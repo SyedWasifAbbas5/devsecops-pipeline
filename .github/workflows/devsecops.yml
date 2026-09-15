@@ -68,16 +68,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -t ghcr.io/${{ github.repository }}:latest .
+        run: docker build -t ghcr.io/syedwasifabbas5/devsecops-pipeline:latest .
 
       - name: Scan Docker image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ghcr.io/${{ github.repository }}:latest
+          image-ref: ghcr.io/syedwasifabbas5/devsecops-pipeline:latest
           format: table
           exit-code: "1"
           ignore-unfixed: true
           severity: CRITICAL,HIGH
 
       - name: Push image
-        run: docker push ghcr.io/${{ github.repository }}:latest
+        run: docker push ghcr.io/syedwasifabbas5/devsecops-pipeline:latest
